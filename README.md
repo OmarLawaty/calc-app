@@ -4,7 +4,7 @@
 
 This is a solution to the [Calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-- [Solution URL]()
+- [Solution URL](https://www.frontendmentor.io/solutions/calc-app-Vp4t2S-Yt)
 - [Live Site URL](https://calc-app-omarlawaty.vercel.app/)
 
 ## Table of contents
