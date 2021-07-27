@@ -1,9 +1,8 @@
 import React from 'react';
-import './Display.scss';
 
 const Display = ({ value, reference }) => {
   return (
-    <div className="result">
+    <section className="result">
       <input
         type="text"
         placeholder="0"
@@ -11,7 +10,7 @@ const Display = ({ value, reference }) => {
         ref={reference}
         value={value}
       />
-    </div>
+    </section>
   );
 };
 

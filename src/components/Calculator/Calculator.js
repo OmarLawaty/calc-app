@@ -9,7 +9,6 @@ class Calculator extends Component {
     this.state = {
       activeIndex: '1',
       activeTheme: ['default', 'light', 'purple'],
-      resultArr: [],
       result: '0',
       flag: 0,
       dot: 0
@@ -21,10 +20,8 @@ class Calculator extends Component {
   }
 
   themeChanger = e => {
-    this.appRef.current.classList = 'calculator';
-    this.appRef.current.classList.add(
-      this.state.activeTheme[e.target.value - 1]
-    );
+    document.body.classList = '';
+    document.body.classList.add(this.state.activeTheme[e.target.value - 1]);
   };
 
   calcOperations = e => {
@@ -40,7 +37,7 @@ class Calculator extends Component {
         });
       } else if (e.target.classList.contains('del')) {
         return result !== '0'
-          ? result.length > 0
+          ? result.length > 1
             ? this.setState({ result: this.state.result.slice(0, -1) })
             : this.setState({ result: '0' })
           : result;
@@ -118,32 +115,39 @@ class Calculator extends Component {
 
   render() {
     return (
-      <div className="calculator default" ref={this.appRef}>
+      <div className="calculator">
         <header>
           <div className="page-logo">calc</div>
           <div className="theme-changer">
-            <label htmlFor="theme">THEME</label>
-            <input
-              type="range"
-              name="active-theme"
-              id="theme"
-              step="1"
-              min="1"
-              max="3"
-              value={this.state.activeIndex}
-              onChange={e => {
-                this.themeChanger(e);
-                this.setState({
-                  activeIndex: this.themeChangerRef.current.value
-                });
-              }}
-              ref={this.themeChangerRef}
-            />
+            <div className="theme-number">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+            </div>
+            <div className="theme-selector">
+              <label htmlFor="theme">THEME</label>
+              <input
+                type="range"
+                name="active-theme"
+                id="theme"
+                step="1"
+                min="1"
+                max="3"
+                value={this.state.activeIndex}
+                onChange={e => {
+                  this.themeChanger(e);
+                  this.setState({
+                    activeIndex: this.themeChangerRef.current.value
+                  });
+                }}
+                ref={this.themeChangerRef}
+              />
+            </div>
           </div>
         </header>
         <main>
           <Display value={this.state.result} reference={this.calcResults} />
-          <div
+          <section
             className="Keypad"
             ref={this.calcButtons}
             onClick={e => this.calcOperations(e)}
@@ -166,7 +170,7 @@ class Calculator extends Component {
             <button className="button operator">*</button>
             <button className="button reset">RESET</button>
             <button className="button equal">=</button>
-          </div>
+          </section>
         </main>
       </div>
     );
@@ -174,74 +178,3 @@ class Calculator extends Component {
 }
 
 export default Calculator;
-// calcOperations = e => {
-//   const splitJoin = temp => {
-//     temp = temp.split('');
-//     temp.pop();
-//     return temp.join('');
-//   };
-//   if (e.target.classList.contains('del')) {
-//     if (this.state.screenNum !== 0) {
-//       let temp = this.state.screenNum.toString();
-//       console.log(temp);
-//       if (temp.length === 1) {
-//         this.setState({ screenNum: 0 });
-//       }
-//       //if no commas or .'s
-//       else if (!temp.includes('.') && !temp.includes(',')) {
-//         this.setState({ screenNum: splitJoin(temp) });
-//       } else if (temp.includes('.')) {
-//         this.setState({ screenNum: splitJoin(temp) });
-//       } else {
-//         temp = splitJoin(temp);
-//         temp = temp.toString().replace(/,/g, '');
-//         this.setState({ screenNum: parseInt(temp).toLocaleString('en-US') });
-//         console.log(temp);
-//       }
-//     }
-//   } else if (e.target.classList.contains('reset')) {
-//     this.setState({ resultArr: [], result: '', screenNum: 0 });
-//   } else if (e.target.classList.contains('num')) {
-//     const keyNum = e.target.innerHTML;
-
-//     console.log(this.state.screenNum);
-//     if (this.state.screenNum === 0) {
-//       this.setState({ screenNum: keyNum });
-//     }
-
-//     //no commas beyond decimal point, so add keyNum to end
-//     else if (
-//       keyNum === '.' ||
-//       this.state.screenNum.toString().includes('.') ||
-//       (!this.state.screenNum.toString().includes('.') &&
-//         this.state.screenNum.length < 3)
-//     ) {
-//       this.setState({ screenNum: this.state.screenNum + keyNum });
-//       // add commas to integers
-//     } else {
-//       let temp = this.state.screenNum.toString();
-//       temp = temp.replace(/,/g, '');
-//       temp += keyNum;
-//       this.setState({ screenNum: parseInt(temp).toLocaleString('en-US') });
-//     }
-//   } else if (e.target.classList.contains('operator')) {
-//     let operator = e.target.innerHTML;
-//     if (operator === 'x') {
-//       operator = '*';
-//     }
-//     this.state.resultArr.push(this.state.screenNum);
-//     this.state.resultArr.push(operator);
-
-//     this.setState({ screenNum: 0 });
-//   } else if (e.target.classList.contains('equal')) {
-//     this.state.resultArr.push(this.state.screenNum);
-//     this.setState({ result: this.state.resultArr.join('') });
-//     //evaluate string
-//     this.setState({ screenNum: window.eval(this.state.result) });
-//     //set solution in the screen window
-//     this.calcResults.value = this.state.screenNum;
-//     //reset
-//     this.setState({ resultArr: [] });
-//     this.setState({ result: '' });
-//   }
-// };
