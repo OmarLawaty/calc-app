@@ -103,7 +103,7 @@ body {
 }
 
 #root {
-  padding: min(102px, 10vw);
+  padding: min(102px, 9vw) 23px;
   display: flex;
   justify-content: center;
 }
@@ -120,6 +120,10 @@ header {
   justify-content: space-between;
   transition: color 0.5s;
   color: var(--text-color);
+
+  .page-logo {
+    user-select: none;
+  }
 
   .theme-changer {
     margin-top: -8px;
@@ -325,5 +329,29 @@ main {
     font-size: clamp(12px, 3.5vw, 20px);
     padding: clamp(10px, 3.5vw, 16px) 0;
     color: var(--text-color);
+  }
+}
+
+@media (max-width: 1000px) {
+  .result {
+    padding: clamp(25px, 3.5vw, 50px);
+  }
+
+  .Keypad {
+    padding: 20px 25px;
+
+    .button {
+      padding: 17px 0 7px;
+      border-radius: 5px;
+      font-size: 28px;
+    }
+
+    .del,
+    .equal,
+    .reset {
+      font-size: clamp(16px, 3.5vw, 20px);
+      padding: clamp(10px, 5.3vw, 30px) 0;
+      color: var(--text-color);
+    }
   }
 }
