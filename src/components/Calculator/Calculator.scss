@@ -178,7 +178,7 @@ header {
           background: var(--key-toggle-background);
           cursor: pointer;
           -webkit-appearance: none;
-          margin: 1px 50px 0;
+          margin-top: 1px;
         }
 
         &:focus::-webkit-slider-runnable-track {
@@ -203,7 +203,7 @@ header {
           transition: background 0.5s;
           background: var(--key-toggle-background);
           cursor: pointer;
-          margin: 1px 50px 0;
+          margin-top: 1px;
         }
 
         &::-ms-track {
