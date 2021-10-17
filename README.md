@@ -47,5 +47,5 @@ yarn start
 ## Author
 
 - Name - Omar Mohamed
-- Frontend Mentor - [@OmarMo123](https://www.frontendmentor.io/profile/OmarMo123)
+- Frontend Mentor - [@OmarLawaty](https://www.frontendmentor.io/profile/OmarLawaty)
 - Twitter - [@OmarLawaty](https://twitter.com/OmarLawaty)
